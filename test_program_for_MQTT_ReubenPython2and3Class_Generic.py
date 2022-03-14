@@ -6,9 +6,9 @@ reuben.brewer@gmail.com
 www.reubotics.com
 
 Apache 2 License
-Software Revision C, 09/05/2021
+Software Revision D, 03/13/2022
 
-Verified working on: Python 2.7 and 3 for Windows 8.1 64-bit and Raspberry Pi Buster (no Mac testing yet).
+Verified working on: Python 2.7, 3.8 for Windows 8.1, 10 64-bit and Raspberry Pi Buster (no Mac testing yet).
 '''
 
 __author__ = 'reuben.brewer'
@@ -102,30 +102,11 @@ def GUI_update_clock():
 ##########################################################################################################
 ##########################################################################################################
 def ExitProgram_Callback():
-    global root
     global EXIT_PROGRAM_FLAG
-    global GUI_RootAfterCallbackInterval_Milliseconds
 
-    global MQTT_ReubenPython2and3ClassObject
-    global MQTT_OPEN_FLAG
-
-    global MyPrint_ReubenPython2and3ClassObject
-    global MYPRINT_OPEN_FLAG
-
-    print("Exiting all threads in test_program_for_MyPrint_ReubenPython2and3Class.")
+    print("ExitProgram_Callback event fired!")
 
     EXIT_PROGRAM_FLAG = 1
-
-    #########################################################
-    if MQTT_OPEN_FLAG == 1:
-        MQTT_ReubenPython2and3ClassObject.ExitProgram_Callback()
-    #########################################################
-
-    #########################################################
-    if MYPRINT_OPEN_FLAG == 1:
-        MyPrint_ReubenPython2and3ClassObject.ExitProgram_Callback()
-    #########################################################
-
 ##########################################################################################################
 ##########################################################################################################
 
@@ -248,26 +229,48 @@ if __name__ == '__main__':
     global EXIT_PROGRAM_FLAG
     EXIT_PROGRAM_FLAG = 0
 
-    global root
-
-    global GUI_RootAfterCallbackInterval_Milliseconds
-    GUI_RootAfterCallbackInterval_Milliseconds = 30
-
-    global MQTT_ReubenPython2and3ClassObject
-
-    global MQTT_OPEN_FLAG
-    MQTT_OPEN_FLAG = -1
-
-    global MyPrint_ReubenPython2and3ClassObject
-
-    global MYPRINT_OPEN_FLAG
-    MYPRINT_OPEN_FLAG = -1
-
     global MainLoopThread_current_time
     MainLoopThread_current_time = -11111
 
     global MainLoopThread_starting_time
     MainLoopThread_starting_time = -11111
+
+    global root
+
+    global GUI_RootAfterCallbackInterval_Milliseconds
+    GUI_RootAfterCallbackInterval_Milliseconds = 30
+    #################################################
+    #################################################
+
+    #################################################
+    #################################################
+    global MQTT_ReubenPython2and3ClassObject
+
+    global MQTT_OPEN_FLAG
+    MQTT_OPEN_FLAG = -1
+
+    global MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict
+
+    global MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageCounter
+    MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageCounter =  -11111.0
+
+    global MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageTimeSeconds
+    MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageTimeSeconds = -11111.0
+
+    global MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageTopic
+    MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageTopic = ""
+
+    global MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageData
+    MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageData = ""
+    #################################################
+    #################################################
+
+    #################################################
+    #################################################
+    global MyPrint_ReubenPython2and3ClassObject
+
+    global MYPRINT_OPEN_FLAG
+    MYPRINT_OPEN_FLAG = -1
     #################################################
     #################################################
 
@@ -286,21 +289,7 @@ if __name__ == '__main__':
 
     #################################################
     #################################################
-    global MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict
-
-    global MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageCounter
-    MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageCounter =  -11111.0
-
-    global MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageTimeSeconds
-    MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageTimeSeconds = -11111.0
-
-    global MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageTopic
-    MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageTopic = ""
-
-    global MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageData
-    MQTT_ReubenPython2and3ClassObject_MostRecentRxMessageDict_RxMessageData = ""
-
-
+    global MQTT_GUIparametersDict
     MQTT_GUIparametersDict = dict([("USE_GUI_FLAG", USE_GUI_FLAG and SHOW_IN_GUI_MQTT_FLAG),
                                     ("root", root),
                                     ("EnableInternal_MyPrint_Flag", 1),
@@ -313,6 +302,7 @@ if __name__ == '__main__':
                                     ("GUI_ROWSPAN", GUI_ROWSPAN_MQTT),
                                     ("GUI_COLUMNSPAN", GUI_COLUMNSPAN_MQTT)])
 
+    global MQTT_setup_dict
     MQTT_setup_dict = dict([("MQTT_SERVER", "127.0.0.1"),
                             ("MQTT_Rx_topic_list", ["DebuggingRxTopic"]), #'#' means all topics
                             ("MQTT_Rx_QOS_list", [2]),
@@ -421,6 +411,22 @@ if __name__ == '__main__':
     #################################################
     #################################################
 
+    ################################################# THIS IS THE EXIT ROUTINE!
+    #################################################
     print("Exiting main program 'test_program_for_MQTT_ReubenPython2and3ClassObject_Generic.")
+
+    #########################################################
+    if MQTT_OPEN_FLAG == 1:
+        MQTT_ReubenPython2and3ClassObject.ExitProgram_Callback()
+    #########################################################
+
+    #########################################################
+    if MYPRINT_OPEN_FLAG == 1:
+        MyPrint_ReubenPython2and3ClassObject.ExitProgram_Callback()
+    #########################################################
+
+    #################################################
+    #################################################
+
     ##########################################################################################################
     ##########################################################################################################
