@@ -12,7 +12,7 @@ www.reubotics.com
 
 Apache 2 License
 
-Software Revision F, 09/21/2022
+Software Revision G, 05/10/2023
 
 Verified working on: 
 Python 2.7, 3.8.
@@ -34,7 +34,7 @@ When you type a message to send in 1 instance, the other will receive it (and vi
 MQTT_ReubenPython2and3Class, ListOfModuleDependencies: ['future.builtins', 'paho.mqtt.client']
 MQTT_ReubenPython2and3Class, ListOfModuleDependencies_TestProgram: ['MyPrint_ReubenPython2and3Class']
 MQTT_ReubenPython2and3Class, ListOfModuleDependencies_NestedLayers: ['future.builtins']
-MQTT_ReubenPython2and3Class, ListOfModuleDependencies_All: ['future.builtins', 'MyPrint_ReubenPython2and3Class', 'paho.mqtt.client']
+MQTT_ReubenPython2and3Class, ListOfModuleDependencies_All:['future.builtins', 'MyPrint_ReubenPython2and3Class', 'paho.mqtt.client']
 
 "sudo pip install paho-mqtt" works on windows (without sudo) and Raspberry Pi
 
